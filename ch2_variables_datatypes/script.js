@@ -1,4 +1,4 @@
-var firstname="hodo";
+var= firstname = "hodo";
 var salary = 200
 var ismarried = false
 // var tax = 10
