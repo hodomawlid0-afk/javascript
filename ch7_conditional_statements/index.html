@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Age checker</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            background: white;
+            padding: 25px;
+            width: 320px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background: #007bff;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        p {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+        <h2>Age Checker</h2>
+
+        <input type="number" id="age" placeholder="Enter your age">
+        <button onclick="checkAge()">Check</button>
+
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function checkAge() {
+            let age = Number(document.getElementById("age").value);
+            let result = document.getElementById("result");
+
+            if (age === 5) {
+                result.textContent = "You are 5 years old 😊";
+                result.style.color = "green";
+
+            } else if (age === 6) {
+                result.textContent = "You are 6 years old 😄";
+                result.style.color = "blue";
+
+            } else if (age === 7) {
+                result.textContent = "You are 7 years old 😎";
+                result.style.color = "purple";
+
+            } else if (age === 8) {
+                result.textContent = "You are 8 years old 🚀";
+                result.style.color = "orange";
+
+            } else {
+                result.textContent = "You are neither 5, 6, 7, nor 8 ❌";
+                result.style.color = "red";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

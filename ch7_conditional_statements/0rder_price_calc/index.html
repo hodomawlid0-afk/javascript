@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User Access Checker</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+        }
+
+        .container {
+            background: #fff;
+            padding: 30px;
+            width: 380px;
+            border-radius: 14px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            margin-top: 18px;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #667eea;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        .message {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: none;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>User Access Checker</h2>
+
+        <label>Age</label>
+        <input type="number" id="age" placeholder="Enter your age">
+
+        <label>Role</label>
+        <select id="role">
+            <option value="">-- Select role --</option>
+            <option value="student">Student</option>
+            <option value="developer">Developer</option>
+            <option value="admin">Admin</option>
+        </select>
+
+        <button onclick="checkAccess()">Check Access</button>
+
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        function checkAccess() {
+            const age = Number(document.getElementById("age").value);
+            const role = document.getElementById("role").value;
+            const message = document.getElementById("message");
+
+            message.style.display = "block";
+
+            // Validation
+            if (!age || age <= 0) {
+                message.className = "message error";
+                message.textContent = "❌ Please enter a valid age.";
+            }
+            else if (role === "") {
+                message.className = "message warning";
+                message.textContent = "⚠️ Please select a role.";
+            }
+
+            // Business logic
+            else if (age < 18 && role === "admin") {
+                message.className = "message error";
+                message.textContent = "❌ Admin access requires age 18+.";
+            }
+            else if (age >= 18 && role === "admin") {
+                message.className = "message success";
+                message.textContent = "✅ Welcome Admin! Full access granted.";
+            }
+            else if (age >= 16 && role === "developer") {
+                message.className = "message success";
+                message.textContent = "💻 Developer access granted.";
+            }
+            else if (age < 16 && role === "developer") {
+                message.className = "message warning";
+                message.textContent = "⚠️ Developer access requires age 16+.";
+            }
+            else if (role === "student") {
+                message.className = "message info";
+                message.textContent = "📘 Student access granted. Limited features.";
+            }
+            else {
+                message.className = "message info";
+                message.textContent = "ℹ️ Access rules not defined.";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
